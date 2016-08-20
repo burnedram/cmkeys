@@ -142,9 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="commands.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="SDKDLL.h" />
