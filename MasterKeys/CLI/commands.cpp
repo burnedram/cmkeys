@@ -3,12 +3,14 @@
 #include "commands.h"
 #include "util.h"
 #include "effect.h"
+#include "effects/fullrandom.h"
 
 using namespace std;
+using namespace effects;
 
 bool bDeviceSet = false;
 DEVICE_INDEX currentDevice;
-effects::Effect* pCurrentEffect = nullptr;
+Effect* pCurrentEffect = nullptr;
 
 bool cmd_Quit(wstring cmd, vector<wstring> args) {
 	if (pCurrentEffect) {
@@ -93,11 +95,29 @@ bool cmd_Effect(wstring cmd, vector<wstring> args) {
 		wcout << "Unable to enable key interrupt" << endl;
 		return true;
 	}
+	if (args.size() == 1) {
+		wcout << L"Current effect: " << (pCurrentEffect ? pCurrentEffect->GetName() : L"None") << endl;
+		return true;
+	}
+	if (args.size() != 2) {
+		wcout << L"Expected zero or one argument" << endl;
+		return true;
+	}
+	wstring &effect = args[1];
+	Effect *newEffect;
+	if (!effect.compare(L"touch"))
+		newEffect = new TouchEffect();
+	else if (!effect.compare(L"fullrng"))
+		newEffect = new FullRandomEffect();
+	else {
+		wcout << L"Unknown effect \"" << effect << "\"" << endl;
+		return true;
+	}
 	if (pCurrentEffect) {
 		SetKeyCallBack(nullptr);
 		delete pCurrentEffect;
 	}
-	pCurrentEffect = new effects::TouchEffect();
+	pCurrentEffect = newEffect;
 	SetKeyCallBack(effectWrapper);
 	return true;
 }

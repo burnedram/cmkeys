@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="commands.h" />
     <ClInclude Include="effect.h" />
+    <ClInclude Include="effects\fullrandom.h" />
     <ClInclude Include="SDKDLL.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="commands.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="cli.cpp" />
+    <ClCompile Include="effects\fullrandom.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

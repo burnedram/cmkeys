@@ -11,6 +11,7 @@
 #include <tchar.h>
 #include <Windows.h>
 #include <Psapi.h>
+#include <wincrypt.h>
 
 #include <vector>
 #include <unordered_map>
