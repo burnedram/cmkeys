@@ -6,14 +6,18 @@ using namespace std;
 
 namespace effects {
 
-	Effect::Effect(wstring effectName) {
-		mEffectName = effectName;
+	Effect::Effect(const wstring effectName) : 
+			mEffectName(effectName) {
 		if (!EnableLedControl(true))
 			Log(L"Unable to enable LED control");
 	}
 
-	void Effect::Log(wstring entry) {
+	void Effect::Log(const wstring &entry) const {
 		wcout << "[" << mEffectName << "] " << entry << endl;
+	}
+
+	const wstring &Effect::GetName() const {
+		return mEffectName;
 	}
 
 	TouchEffect::TouchEffect() : 

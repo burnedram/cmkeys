@@ -4,12 +4,14 @@ namespace effects {
 
 	class Effect {
 	public:
-		Effect(std::wstring effectName);
-		void Log(std::wstring entry);
+		Effect(const std::wstring effectName);
+		void Log(const std::wstring &entry) const;
 		virtual ~Effect() {};
 		virtual void KeyEvent(int iRow, int iColumn, bool isPressed) = 0;
+
+		const std::wstring &GetName() const;
 	protected:
-		std::wstring mEffectName;
+		const std::wstring mEffectName;
 	};
 
 	class TouchEffect : public Effect {
