@@ -39,21 +39,22 @@ namespace effects {
 	void TouchEffect::WorkerLoop() {
 		while (true) {
 			unique_lock<mutex> lck(mMutex);
-			if (!mRun)
-				break;
 			if (!mUpdated)
 				mCondition.wait(lck);
+			mUpdated = false;
 			lck.unlock();
-			SetAllLedColor(mColorMatrix);
+			if (!mRun)
+				break;
+			while (!SetAllLedColor(mColorMatrix) && IsDevicePlug());
 			//this_thread::sleep_for(chrono::milliseconds(1000 / 100));
 		}
 	}
 
 	void TouchEffect::KeyEvent(int iRow, int iColumn, bool isPressed) {
 		BYTE r = mRgbDist(mRng) * isPressed, g = mRgbDist(mRng) * isPressed, b = mRgbDist(mRng) * isPressed;
+		mColorMatrix.KeyColor[iRow][iColumn] = KEY_COLOR(r, g, b);
 		unique_lock<mutex> lck(mMutex);
 		mUpdated = true;
-		mColorMatrix.KeyColor[iRow][iColumn] = KEY_COLOR(r, g, b);
 		mCondition.notify_one();
 	}
 }

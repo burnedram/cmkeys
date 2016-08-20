@@ -22,8 +22,8 @@ namespace effects {
 		std::condition_variable mCondition;
 		std::thread mWorker;
 		void WorkerLoop();
-		bool mRun = true;
-		bool mUpdated = false;
+		volatile bool mRun = true;
+		volatile bool mUpdated = false;
 
 		std::default_random_engine mRng;
 		std::uniform_int_distribution<int> mRgbDist;
