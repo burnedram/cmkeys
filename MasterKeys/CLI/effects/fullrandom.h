@@ -1,6 +1,6 @@
 #pragma once
-#include "../SDKDLL.h"
-#include "../effect.h"
+#include "SDKDLL.h"
+#include "effect.h"
 
 namespace effects {
 	class FullRandomEffect : public Effect {

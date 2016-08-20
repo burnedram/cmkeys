@@ -2,7 +2,8 @@
 #include "SDKDLL.h"
 #include "commands.h"
 #include "util.h"
-#include "effect.h"
+#include "effects/effect.h"
+#include "effects/touch.h"
 #include "effects/fullrandom.h"
 
 using namespace std;
