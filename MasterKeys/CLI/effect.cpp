@@ -37,15 +37,13 @@ namespace effects {
 	}
 
 	void TouchEffect::WorkerLoop() {
-		while (true) {
+		while (mRun) {
 			unique_lock<mutex> lck(mMutex);
 			if (!mUpdated)
 				mCondition.wait(lck);
 			mUpdated = false;
 			lck.unlock();
-			if (!mRun)
-				break;
-			while (!SetAllLedColor(mColorMatrix) && IsDevicePlug());
+			while (!SetAllLedColor(mColorMatrix) && mRun && IsDevicePlug());
 			//this_thread::sleep_for(chrono::milliseconds(1000 / 100));
 		}
 	}
