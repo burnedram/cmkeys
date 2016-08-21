@@ -1,7 +1,7 @@
 #pragma once
-
 #include "SDKDLL.h"
 #include "bufferedeffect.h"
+#include "random/random.h"
 
 namespace effects {
 
@@ -10,8 +10,7 @@ namespace effects {
 		TouchEffect();
 		virtual void KeyEvent(int iRow, int iColumn, bool isPressed);
 	private:
-		std::default_random_engine mRng;
-		std::uniform_int_distribution<int> mRgbDist;
+		std::unique_ptr<Random> _rng;
 	};
 
 }
