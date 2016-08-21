@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="commands.h" />
+    <ClInclude Include="effects\bufferedeffect.h" />
     <ClInclude Include="effects\effect.h" />
     <ClInclude Include="effects\fullrandom.h" />
     <ClInclude Include="effects\touch.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="commands.cpp" />
+    <ClCompile Include="effects\bufferedeffect.cpp" />
     <ClCompile Include="effects\effect.cpp" />
     <ClCompile Include="cli.cpp" />
     <ClCompile Include="effects\fullrandom.cpp" />
