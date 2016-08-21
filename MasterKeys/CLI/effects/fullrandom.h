@@ -1,13 +1,11 @@
 #pragma once
 #include "SDKDLL.h"
-#include "effect.h"
+#include "bufferedeffect.h"
 
 namespace effects {
-	class FullRandomEffect : public Effect {
+	class FullRandomEffect : public BufferedEffect {
 	public:
 		FullRandomEffect();
 		virtual void KeyEvent(int iRow, int iColumn, bool isPressed);
-	private:
-		COLOR_MATRIX mColorMatrix;
 	};
 }

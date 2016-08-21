@@ -6,12 +6,8 @@ using namespace std;
 namespace effects {
 
 	FullRandomEffect::FullRandomEffect() :
-			Effect(L"FullRandomEffect")
+			BufferedEffect(L"FullRandomEffect")
 	{
-		if (!SetAllLedColor(mColorMatrix))
-			Log(L"Unable to set background");
-		if (!RefreshLed(true))
-			Log(L"Unable to enable auto refresh");
 	}
 
 	static bool fillWithRandom(void *pBuffer, size_t bufferSize) {
@@ -45,8 +41,8 @@ namespace effects {
 	}
 
 	void FullRandomEffect::KeyEvent(int iRow, int iColumn, bool isPressed) {
-		fillWithRandom(&mColorMatrix, sizeof(COLOR_MATRIX));
-		SetAllLedColor(mColorMatrix);
+		fillWithRandom(m_pMatrix.get(), sizeof(COLOR_MATRIX));
+		SwapBuffer();
 	}
 
 }
